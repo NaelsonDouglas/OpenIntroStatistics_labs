@@ -1,0 +1,265 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={ex-2.R},
+            pdfauthor={naelsondouglas},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{ex-2.R}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{naelsondouglas}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{Thu Jul 26 13:25:08 2018}
+
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Organizando o ambiente}
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"/home/naelsondouglas/Desktop/Matérias/Estatística/Laboratórios/2"}\NormalTok{)}
+\KeywordTok{download.file}\NormalTok{(}\StringTok{"http://www.openintro.org/stat/data/kobe.RData"}\NormalTok{, }\DataTypeTok{destfile =} \StringTok{"kobe.RData"}\NormalTok{)}
+\KeywordTok{load}\NormalTok{(}\StringTok{"kobe.RData"}\NormalTok{)}
+
+
+\CommentTok{#1. Descreva a distribuição das sequências de arremessos. }
+\CommentTok{#Qual é o comprimento de sequência típico para o arremessador independente simulado com um percentual de arremesso de 45%?}
+
+\CommentTok{#Sequência típica seria a moda?}
+
+\CommentTok{#Função para calcular a moda. R não tem uma função pre-definida.}
+\NormalTok{getmode <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(v) \{}
+\NormalTok{  uniqv <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(v)}
+\NormalTok{  uniqv[}\KeywordTok{which.max}\NormalTok{(}\KeywordTok{tabulate}\NormalTok{(}\KeywordTok{match}\NormalTok{(v, uniqv)))]}
+\NormalTok{\}}
+
+\KeywordTok{getmode}\NormalTok{(}\KeywordTok{calc_streak}\NormalTok{(sim_basket))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Dá zero e fica sem graça. Vamos remover as sequências zeradas do espaço para ver algum número}
+\KeywordTok{getmode}\NormalTok{(seqs_sim[seqs_sim}\OperatorTok{!=}\DecValTok{0}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Quão longa é a sequência mais longa de cestas em 133 arremessos?}
+\KeywordTok{max}\NormalTok{(seqs_sim)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#02 Se você rodasse a simulação do arremessador independente uma segunda vez, como você acha que}
+\CommentTok{# seria a distribuição de sequências em relação à distribuição da questão acima? Exatamente a mesma?}
+\CommentTok{#   Mais ou menos parecida? Completamente diferente? Explique seu raciocínio.}
+
+\KeywordTok{print}\NormalTok{(}\StringTok{"Muito parecidas. Nâo idênticas, porém parecidas. Os espaços amostrais teriam a mesma dimensão e seriam simulados com as mesmas probabilidades, logo seriam muito semelhantes"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Muito parecidas. Nâo idênticas, porém parecidas. Os espaços amostrais teriam a mesma dimensão e seriam simulados com as mesmas probabilidades, logo seriam muito semelhantes"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 3. Como a distribuição dos comprimentos de sequência de Kobe Bryant, analisada na página 2, se}
+\CommentTok{# comparam à distribuição de comprimentos de sequência do arremessador simulado? Utilizando}
+\CommentTok{# essa comparação, você tem evidência de que o modelo das mãos quentes se ajusta aos padrões de}
+\CommentTok{# arremessos de Kobe? Explique.}
+
+\KeywordTok{print}\NormalTok{(}\StringTok{"Olhando os sumários e os boxplots (ou apenas o boxplot), podemos ver que os arremessos do Kobe são sumarizados de forma}
+\StringTok{semelhante ao modelo de eventos independentes. Só os outliers(Max) que são um pouco diferentes, mas como o nome já diz: eles são outliers. }
+\StringTok{Os quartis dentro dos boxplots se encaixam perfeitamente"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Olhando os sumários e os boxplots (ou apenas o boxplot), podemos ver que os arremessos do Kobe são sumarizados de forma\nsemelhante ao modelo de eventos independentes. Só os outliers(Max) que são um pouco diferentes, mas como o nome já diz: eles são outliers. \nOs quartis dentro dos boxplots se encaixam perfeitamente"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(seqs_sim)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.0000  0.6145  1.0000  5.0000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(seqs_kobe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.0000  0.7632  1.0000  4.0000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(seqs_sim,seqs_kobe)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ex-2_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 4. Quais conceitos do livro são abordados neste laboratório? Quais conceitos, se houver algum, que}
+\CommentTok{# não são abordados no livro? Você viu esses conceito em algum outro lugar, p.e., aulas, seções de}
+\CommentTok{# discussão, laboratórios anteriores, ou tarefas de casa? Seja específico em sua resposta.}
+\KeywordTok{print}\NormalTok{(}\StringTok{"Questão pedindo feedback do livro Openintro. Eu estudei pelo livro do Marcos Magalhães, então não tem como dar feedback do openintro"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Questão pedindo feedback do livro Openintro. Eu estudei pelo livro do Marcos Magalhães, então não tem como dar feedback do openintro"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Plotando o script em .PDF}
+\CommentTok{#Essa linha fica comentada porque ela ao ser chamada executa o script, mas ela mesma tá escrita no script. Isso causaria um loop eterno}
+\CommentTok{#Chamo ela pelo console, deixando aqui comentada mesmo só para registro}
+\CommentTok{#As vezes dá erro na hora de baixar o dataset, é só tentar de novo.}
+\CommentTok{#rmarkdown::render("ex-2.R")}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
